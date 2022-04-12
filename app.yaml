@@ -33,3 +33,5 @@ env_variables:
   EBOOK_BUCKET: ebook-storage-maxshaberman
   HELPER_BUCKET: ebook-helpers-maxshaberman
   EBOOK_DATA: ebook_data.json
+  TMP_PATH: /tmp/tmp_ebook
+  
