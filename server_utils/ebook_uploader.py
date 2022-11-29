@@ -1,13 +1,7 @@
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from ebooklib import epub
-from os.path import dirname, join, abspath
-from os import remove, environ, listdir
-from ebooklib import epub
 import logging
-import json
-from .ebook_data import EBOOK_BUCKET, HELPER_BUCKET, EBOOK_DATA, EbookMetadata, TMP_PATH
-
+from .ebook_data import EBOOK_BUCKET, EbookMetadata, TMP_PATH
 
 from google.cloud import storage, datastore
 
@@ -21,7 +15,6 @@ async def uploadBook(request: Request):
   
   gcs = storage.Client()
   ebook_bucket = gcs.get_bucket(EBOOK_BUCKET)
-  helper_bucket = gcs.get_bucket(HELPER_BUCKET)
 
   # TMP_PATH = '/tmp/tmp_ebook' # The leading slash is crucial, or it will fail
   with open(TMP_PATH, 'wb') as fp:
@@ -37,7 +30,6 @@ async def uploadBook(request: Request):
     ebook_blob.upload_from_file(f)
 
   logging.info('Upload successful!')
-
 
   # Add to datastore
   datastore_client = datastore.Client()
@@ -65,7 +57,7 @@ async def uploadBook(request: Request):
 
   response = JSONResponse(content = {
     'filename': filename,
-    'info': 'The file was successfully added!'
+    'info': 'The file was added successfully!'
     })
   response.status_code = 201
   logging.info('Done!')

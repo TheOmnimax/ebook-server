@@ -1,21 +1,13 @@
-from typing import Optional
+from os import environ
 import logging
 import google.auth.transport.requests
-from google.cloud import storage
 import google.cloud.logging
 import google.oauth2.id_token
 
-from ebooklib import epub
-
-from os.path import dirname, join
-from os import remove, environ
-
-from fastapi import FastAPI, Header, Response, Request
+from fastapi import FastAPI,  Request
 from fastapi.responses import JSONResponse
-# from pydantic import BaseModel
 
 from server_utils import ebook_uploader, ebook_downloader
-
 
 logging.getLogger().addHandler(logging.StreamHandler()) # For testing
 
@@ -25,14 +17,6 @@ client.setup_logging()
 app = FastAPI()
 
 HTTP_REQUEST = google.auth.transport.requests.Request()
-EBOOK_BUCKET = environ['EBOOK_BUCKET']
-HELPER_BUCKET = environ['HELPER_BUCKET']
-EBOOK_DATA = environ['EBOOK_DATA']
-
-# class Item(BaseModel):
-#     name: str
-#     price: float
-#     is_offer: Optional[bool] = None
 
 @app.middleware('http')
 async def checkAuthToken(request: Request, call_next):
@@ -65,7 +49,6 @@ async def checkAuthToken(request: Request, call_next):
     response = JSONResponse(content = {'message': 'Authorized, yeah!'})
     response.status_code = 200
     return await call_next(request)
-  return checkToken
 
 @app.get('/')
 async def read_root():
@@ -85,7 +68,6 @@ async def getEbook(request: Request):
 async def uploadBook(request: Request):
   logging.info('In main function')
   return await ebook_uploader.uploadBook(request)
-
 
 # TODO: Add endpoint for info on specific book
 
