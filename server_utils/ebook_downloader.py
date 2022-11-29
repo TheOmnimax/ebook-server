@@ -1,8 +1,7 @@
-from .ebook_data import EBOOK_BUCKET, HELPER_BUCKET, EBOOK_DATA, EbookMetadata, GCloudEbookTool
-from fastapi import FastAPI, Header, Response, Request
+from .ebook_data import EBOOK_BUCKET
+from fastapi import Response, Request
 from google.cloud import storage, datastore
 from google.api_core.exceptions import NotFound
-import json
 import logging
 from fastapi.responses import JSONResponse
 

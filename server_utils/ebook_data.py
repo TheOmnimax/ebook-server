@@ -1,4 +1,3 @@
-
 from ebooklib import epub
 from os import environ
 from google.cloud import storage
