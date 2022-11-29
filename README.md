@@ -12,11 +12,11 @@ Authentication is done through Firebase. Both downloading and uploading ebooks r
 
 ## Documentation files
 
-Documentation files can be found in [this folder](https://github.com/TheOmnimax/ebook-server/tree/main/docs).
+Documentation files can be found in [this folder](/docs).
 
-**[data_flow](https://github.com/TheOmnimax/ebook-server/tree/main/data_flow)**: Graphs describing the data workflow.
+**[Data flow](/docs/data_flow.md)**: Graphs describing the data workflow.
 
-**server_utils**: Details about the [server_utils](https://github.com/TheOmnimax/ebook-server/tree/main/server_utils) directory.
+**[Server utilities](/docs/server_utils.md)**: Details about the [server_utils](https://github.com/TheOmnimax/ebook-server/tree/main/server_utils) directory.
 
 ## System diagram
 
